@@ -1,0 +1,28 @@
+{
+  "name": "experimental-react-suspender",
+  "version": "1.0.0",
+  "description": "An experimental alternative approach to React Concurrent Mode Experimental Suspense component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "hot": "NODE_ENV=development parcel ./index.html --no-autoinstall"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheCaffinatedDeveloper/experimental-react-suspender.git"
+  },
+  "author": "William D. Wells",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheCaffinatedDeveloper/experimental-react-suspender/issues"
+  },
+  "homepage": "https://github.com/TheCaffinatedDeveloper/experimental-react-suspender#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
