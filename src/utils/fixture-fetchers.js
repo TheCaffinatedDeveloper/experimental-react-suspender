@@ -13,3 +13,23 @@ export function fetchComments() {
   const comments = axios.get(`${BASE_URL}${COMMENTS}`);
   return comments;
 }
+
+export function fetchPostsSetTimeout() {
+  const posts = new Promise((resolve) => setTimeout(() => resolve({
+    data: [
+      {
+        "id": 1,
+        "title": "Post 1"
+      },
+      {
+        "id": 2,
+        "title": "Post 2"
+      },
+      {
+        "id": 3,
+        "title": "Post 3"
+      }
+    ],
+  }), 5000));
+  return posts;
+}

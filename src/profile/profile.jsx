@@ -3,12 +3,7 @@ import { Suspender } from '../suspender';
 import { Posts } from './posts/posts';
 import { Comments } from './comments/comments';
 
-const usernameStyle = {
-  fontWeight: 'bold',
-  marginBottom: 10,
-};
-
-const Username = () => <div style={usernameStyle}>Sample Username</div>;
+const Username = () => <h1 style={{ marginBottom: 10 }}>John Doe</h1>;
 
 export function Profile({ posts, comments }) {
   return (
