@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/TheCaffinatedDeveloper/experimental-react-suspender#readme",
   "dependencies": {
-    "app": "^0.1.0",
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
