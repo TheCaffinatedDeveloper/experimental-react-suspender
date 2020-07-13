@@ -1,69 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { AsyncTracker } from './async-tracker';
 
-function extractAsyncProps({ props, type: { name } }) {
-  const asyncProps = Object.entries(props).filter(
-    ([key, value]) => Promise.resolve(value) === value
-  );
-  return { name, asyncProps };
-}
-
-function constructResolvedProps(propKeys, values) {
-  const newProps = {};
-  propKeys.forEach(prop => {
-    newProps[prop] = values[prop].resolved;
-  });
-  return newProps;
-}
-
+/**
+ * Experimental alternative apprach to how components can handle async
+ * props. Suspender will extract any async props of its children and
+ * show a fallback while they are resolved. There are no waterfall effects,
+ * any component with fully resolved data with be rendered.
+ *
+ * @export
+ * @param {*} props children of Suspender and fallback loader
+ * @returns Either non async component immediately, fallback loader, or
+ * the component with resolved props
+ */
 export function Suspender(props) {
   const children = React.Children.toArray(props.children);
+  // maintain the async tracker between reders
+  const asyncTracker = useRef(new AsyncTracker(children)).current;
 
-  const asyncProps = children.map(child => extractAsyncProps(child));
-  // [ [key, value], [key, value]  ]
-  const asyncTracker = {};
-  asyncProps.forEach(component => {
-    const { name } = component;
-    const async = {};
-    component.asyncProps.forEach(([key, value]) => {
-      async[key] = { promise: value, resolved: null };
-    });
-    asyncTracker[name] = async;
-  });
+  // use for rendering
+  const [values, setValues] = useState(asyncTracker.tracker);
+  // resolves all async request and updates values
+  asyncTracker.resolveAsnycProps(setValues);
 
-  const [values, setValues] = useState(asyncTracker);
-
-  Object.keys(values).forEach(component => {
-    Object.keys(values[component]).forEach(prop => {
-      values[component][prop].promise.then(res => {
-        if (!values[component][prop].resolved) {
-          const newState = { ...values };
-          newState[component][prop].resolved = res;
-          setValues(newState);
-        }
-      });
-    });
-  });
-
-  return children.map((component, i) => {
-    const currentComponent = component.type.name;
-    const waitingProps = Object.keys(values[currentComponent]);
-    const hasAllResolved = !waitingProps.some(
-      prop => !values[currentComponent][prop].resolved
-    );
+  return children.map((component, key) => {
+    const currentComponent = `${component.type.name}-${key}`;
+    const hasAllResolved = asyncTracker.hasAllResolved(currentComponent);
 
     // component is still waiting for some data
     if (!hasAllResolved) {
-      return React.cloneElement(props.fallback, { key: i });
+      return React.cloneElement(props.fallback, { key });
     }
     // component has resolved and needs it's props overriden
     if (values[currentComponent]) {
-      const resolvedProps = constructResolvedProps(
-        waitingProps,
-        values[currentComponent]
-      );
-      return React.cloneElement(component, { ...resolvedProps, key: i });
+      const resolvedProps = asyncTracker.constructResolvedProps(currentComponent);
+      return React.cloneElement(component, { ...resolvedProps, key });
     }
     // component never had async data but was in suspender
-    return React.cloneElement(component, { key: i});
+    return React.cloneElement(component, { key });
   });
 }

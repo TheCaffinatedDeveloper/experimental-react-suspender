@@ -12,5 +12,6 @@ export function Profile({ posts, comments }) {
       <Posts posts={posts} />
       <Comments comments={comments} />
     </Suspender>
+    
   );
 }
