@@ -1,3 +1,4 @@
+
 /**
  * Class responsible for keeping track of all components that have async props and
  * resolving them
@@ -6,12 +7,15 @@
  * @class AsyncTracker
  */
 export class AsyncTracker {
+  children: JSX.Element[]
+  asyncTracker: Object
+  asyncComponentNames: string[]
   /**
    * Creates an instance of AsyncTracker.
    * @param {*} reactChildren - components inside suspender
    * @memberof AsyncTracker
    */
-  constructor(reactChildren) {
+  constructor(reactChildren: JSX.Element[]) {
     this.children = reactChildren;
     this.asyncTracker = {};
     this.asyncComponentNames = [];
@@ -36,7 +40,7 @@ export class AsyncTracker {
    * @returns {bool} True / false if everything has resolved
    * @memberof AsyncTracker
    */
-  hasAllResolved(componentName) {
+  hasAllResolved(componentName: string) {
     if (componentName in this.asyncTracker) {
       const asyncProps = Object.keys(this.asyncTracker[componentName]);
       return !asyncProps.some(
@@ -54,7 +58,7 @@ export class AsyncTracker {
    * @returns {Object} newProps to be passed to rendered component
    * @memberof AsyncTracker
    */
-  constructResolvedProps(componentName) {
+  constructResolvedProps(componentName: string) {
     const asyncProps = Object.keys(this.asyncTracker[componentName]);
     const newProps = {};
     asyncProps.forEach((prop) => {
@@ -98,13 +102,13 @@ export class AsyncTracker {
    * @param {*} stateUpdater
    * @memberof AsyncTracker
    */
-  resolveAsnycProps(stateUpdater) {
+  resolveAsnycProps(stateUpdater: React.Dispatch<React.SetStateAction<Object>>) {
     // For each component with async props
     this.asyncComponentNames.forEach((component) => {
       // traverse each async prop
       Object.keys(this.asyncTracker[component]).forEach((prop) => {
         // call .then() to queue in event loop
-        this.asyncTracker[component][prop].promise.then((res) => {
+        this.asyncTracker[component][prop].promise.then((res: Object) => {
           // If the prop has not been previously resolved
           if (!this.asyncTracker[component][prop].resolved) {
             // save resolved value

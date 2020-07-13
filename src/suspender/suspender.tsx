@@ -1,6 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { AsyncTracker } from './async-tracker';
 
+interface SuspenderProps {
+  children: JSX.Element[],
+  fallback: React.ReactElement,
+}
+
 /**
  * Experimental alternative apprach to how components can handle async
  * props. Suspender will extract any async props of its children and
@@ -12,8 +17,8 @@ import { AsyncTracker } from './async-tracker';
  * @returns Either non async component immediately, fallback loader, or
  * the component with resolved props
  */
-export function Suspender(props) {
-  const children = React.Children.toArray(props.children);
+export function Suspender(props: SuspenderProps) {
+  const children: any = React.Children.toArray(props.children);
   // maintain the async tracker between reders
   const asyncTracker = useRef(new AsyncTracker(children)).current;
 
@@ -22,7 +27,7 @@ export function Suspender(props) {
   // resolves all async request and updates values
   asyncTracker.resolveAsnycProps(setValues);
 
-  return children.map((component, key) => {
+  return children.map((component: JSX.Element, key: number) => {
     const currentComponent = `${component.type.name}-${key}`;
     const hasAllResolved = asyncTracker.hasAllResolved(currentComponent);
 

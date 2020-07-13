@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "hot": "NODE_ENV=development parcel ./index.html --no-autoinstall"
+    "hot": "NODE_ENV=development parcel ./src/index.html --no-autoinstall"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,17 @@
   },
   "homepage": "https://github.com/TheCaffinatedDeveloper/experimental-react-suspender#readme",
   "dependencies": {
+    "app": "^0.1.0",
     "axios": "^0.19.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "src": "^1.1.2",
+    "utils": "^0.3.1"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.9.6"
   }
 }

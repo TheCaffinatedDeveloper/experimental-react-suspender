@@ -1,6 +1,19 @@
 import React from 'react';
 
-export function Comments({ comments }) {
+interface Data {
+  data: [
+    {
+      id: string,
+      body: string,
+    }
+  ]
+}
+
+interface Comments {
+  comments: Data,
+}
+
+export function Comments({ comments }: Comments) {
   const { data } = comments;
   return (
     <div>

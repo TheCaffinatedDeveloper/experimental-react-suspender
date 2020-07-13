@@ -5,7 +5,7 @@ const POSTS = '/posts';
 const COMMENTS = '/comments';
 
 export function fetchPosts() {
-  const posts = axios.get(`${BASE_URL}${POSTS}`);
+  const posts: Promise<Object> = axios.get(`${BASE_URL}${POSTS}`);
   return posts;
 }
 
@@ -15,7 +15,7 @@ export function fetchComments() {
 }
 
 export function fetchPostsSetTimeout() {
-  const posts = new Promise((resolve) => setTimeout(() => resolve({
+  const posts: Promise<Object> = new Promise((resolve) => setTimeout(() => resolve({
     data: [
       {
         "id": 1,
