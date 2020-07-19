@@ -1,6 +1,6 @@
 import React from 'react';
-import { fetchComments, fetchPostsSetTimeout } from '/utils/fixture-fetchers';
-import { Profile } from '/profile';
+import { fetchComments, fetchPostsSetTimeout } from 'src/utils/fixture-fetchers';
+import { Profile } from 'src/profile';
 
 export default function App() {
   // Slowed down for demo purposes

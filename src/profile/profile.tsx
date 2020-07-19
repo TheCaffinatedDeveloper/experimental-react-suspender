@@ -1,5 +1,5 @@
 import React from 'react';
-import { Suspender } from '/suspender';
+import { Suspender } from 'src/suspender';
 import { Posts } from './posts/posts';
 import { Comments } from './comments/comments';
 
