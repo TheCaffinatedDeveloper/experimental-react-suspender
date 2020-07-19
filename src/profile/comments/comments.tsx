@@ -17,7 +17,7 @@ export function Comments({ comments }: Comments) {
   const { data } = comments;
   return (
     <div>
-      <span>Comments</span>
+      <span role="heading" >Comments</span>
       <ul>
         {data.map((comment) => (
           <li key={comment.id}>{comment.body}</li>
