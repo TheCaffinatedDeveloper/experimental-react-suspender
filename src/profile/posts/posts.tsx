@@ -12,5 +12,5 @@ export function Posts({ posts }: IPosts) {
         ))}
       </ul>
     </div>
-  )
+  );
 }
