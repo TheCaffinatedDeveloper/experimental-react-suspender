@@ -1,25 +1,14 @@
 import React from 'react';
+import { IComments, IComment } from 'src/utils/fixture-types';
 
-interface Data {
-  data: [
-    {
-      id: string,
-      body: string,
-    }
-  ]
-}
 
-interface Comments {
-  comments: Data,
-}
-
-export function Comments({ comments }: Comments) {
+export function Comments({ comments }: IComments) {
   const { data } = comments;
   return (
     <div>
       <span role="heading" >Comments</span>
-      <ul>
-        {data.map((comment) => (
+      <ul data-testid="comments-list">
+        {data.map((comment: IComment) => (
           <li key={comment.id}>{comment.body}</li>
         ))}
       </ul>

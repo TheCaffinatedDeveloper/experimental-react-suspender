@@ -1,21 +1,22 @@
 import axios from 'axios';
+import { IPostData, ICommentData } from './fixture-types';
 
 const BASE_URL = 'https://my-json-server.typicode.com/typicode/demo';
 const POSTS = '/posts';
 const COMMENTS = '/comments';
 
 export function fetchPosts() {
-  const posts: Promise<Object> = axios.get(`${BASE_URL}${POSTS}`);
+  const posts: Promise<IPostData> = axios.get(`${BASE_URL}${POSTS}`);
   return posts;
 }
 
 export function fetchComments() {
-  const comments = axios.get(`${BASE_URL}${COMMENTS}`);
+  const comments: Promise<ICommentData> = axios.get(`${BASE_URL}${COMMENTS}`);
   return comments;
 }
 
 export function fetchPostsSetTimeout() {
-  const posts: Promise<Object> = new Promise((resolve) => setTimeout(() => resolve({
+  const posts: Promise<IPostData> = new Promise((resolve) => setTimeout(() => resolve({
     data: [
       {
         "id": 1,
