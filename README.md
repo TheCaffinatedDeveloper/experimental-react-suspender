@@ -6,7 +6,7 @@ An experimental alternative approach to React Concurrent Mode Experimental Suspe
 2) `npm install`
 3) `npm run hot`
 
-##TESTS
+## TESTS
 1) `npm run test`
 
 ![](suspender-demo.gif)
