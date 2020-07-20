@@ -1,16 +1,17 @@
 import React from 'react';
 import { Suspender } from 'src/suspender';
-import { Posts } from './posts/posts';
 import { ICommentData, IPostData } from 'src/utils/fixture-types';
+import { Posts } from './posts/posts';
 import { Comments } from './comments/comments';
 
 // posts and comments will be promises entering suspender but not leaving :)
 interface IUsername {
   username: string,
 }
-interface Profile extends IUsername {
+interface Profile {
   posts: IPostData,
   comments: ICommentData,
+  username: string,
 }
 
 const Loader = () => <div>Loading...</div>;
@@ -24,7 +25,7 @@ const Username = ({ username }: IUsername) => (
 export function Profile({ posts, comments, username }: Profile) {
   return (
     <Suspender fallback={<Loader />}>
-      <Username username={username}/>
+      <Username username={username} />
       <Posts posts={posts} />
       <Comments comments={comments} />
     </Suspender>

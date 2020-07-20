@@ -1,7 +1,9 @@
 import React from 'react';
 import { Profile } from 'src/profile';
 import { render } from '@testing-library/react';
-import { fetchComments, fetchPostsSetTimeout, USERNAME_FIXTURE } from 'src/utils/fixture-fetchers';
+import { fetchComments,
+  fetchPostsSetTimeout,
+  USERNAME_FIXTURE } from 'src/utils/fixture-fetchers';
 
 let comments: any;
 let posts: any;

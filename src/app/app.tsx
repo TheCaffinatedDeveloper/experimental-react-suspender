@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { fetchComments,
+import {
+  fetchComments,
   fetchPostsSetTimeout,
-  USERNAME_FIXTURE } from 'src/utils/fixture-fetchers';
+  USERNAME_FIXTURE,
+} from 'src/utils/fixture-fetchers';
 import { Profile } from 'src/profile';
 
 export default function App() {
