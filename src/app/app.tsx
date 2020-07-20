@@ -1,5 +1,7 @@
 import React from 'react';
-import { fetchComments, fetchPostsSetTimeout } from 'src/utils/fixture-fetchers';
+import { fetchComments,
+  fetchPostsSetTimeout,
+  USERNAME_FIXTURE } from 'src/utils/fixture-fetchers';
 import { Profile } from 'src/profile';
 
 export default function App() {
@@ -7,5 +9,11 @@ export default function App() {
   const posts: any = fetchPostsSetTimeout();
   // "In the wild" REST API GET Request
   const comments: any = fetchComments();
-  return <Profile posts={posts} comments={comments} />;
+  return (
+    <Profile
+      posts={posts}
+      comments={comments}
+      username={USERNAME_FIXTURE}
+    />
+  );
 }

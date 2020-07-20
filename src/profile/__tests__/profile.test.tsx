@@ -1,7 +1,7 @@
 import React from 'react';
 import { Profile } from 'src/profile';
 import { render } from '@testing-library/react';
-import { fetchComments, fetchPostsSetTimeout } from 'src/utils/fixture-fetchers';
+import { fetchComments, fetchPostsSetTimeout, USERNAME_FIXTURE } from 'src/utils/fixture-fetchers';
 
 let comments: any;
 let posts: any;
@@ -12,6 +12,12 @@ beforeAll(() => {
 });
 
 test('Profile renders username, posts, and comments', async () => {
-  const { getByTestId } = render(<Profile comments={comments} posts={posts} />);
-  expect(getByTestId('username')).toHaveTextContent('John Doe');
+  const { getByTestId } = render(
+    <Profile
+      comments={comments}
+      posts={posts}
+      username={USERNAME_FIXTURE}
+    />
+  );
+  expect(getByTestId('username')).toHaveTextContent(USERNAME_FIXTURE);
 });

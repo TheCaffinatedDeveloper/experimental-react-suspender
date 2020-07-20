@@ -5,6 +5,8 @@ const BASE_URL = 'https://my-json-server.typicode.com/typicode/demo';
 const POSTS = '/posts';
 const COMMENTS = '/comments';
 
+export const USERNAME_FIXTURE = 'John Doe';
+
 export function fetchPosts() {
   const posts: Promise<IPostData> = axios.get(`${BASE_URL}${POSTS}`);
   return posts;
