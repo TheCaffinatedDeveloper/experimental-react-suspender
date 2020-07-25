@@ -1,6 +1,6 @@
 {
   "name": "experimental-react-suspender",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An experimental alternative approach to React Concurrent Mode Experimental Suspense component",
   "main": "index.js",
   "scripts": {
