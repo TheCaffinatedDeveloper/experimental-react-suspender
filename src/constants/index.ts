@@ -1,0 +1,8 @@
+export {
+  BASE_URL,
+  POSTS_ROUTE,
+  COMMENTS_ROUTE,
+  USERNAME_FIXTURE,
+  POSTS_ROUTE_TIMEOUT,
+  COMMENTS_ROUTE_TIMEOUT,
+} from './data-constants';

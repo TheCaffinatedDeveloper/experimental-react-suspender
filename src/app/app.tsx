@@ -3,20 +3,22 @@ import React from 'react';
 import {
   fetchComments,
   fetchPostsSetTimeout,
-  USERNAME_FIXTURE,
-} from 'src/utils/fixture-fetchers';
+  fetchUsername,
+} from 'src/utils';
 import { Profile } from 'src/profile';
 
-export default function App() {
+export function App() {
   // Slowed down for demo purposes
   const posts: any = fetchPostsSetTimeout();
   // "In the wild" REST API GET Request
   const comments: any = fetchComments();
+  const username: string = fetchUsername();
+
   return (
     <Profile
       posts={posts}
       comments={comments}
-      username={USERNAME_FIXTURE}
+      username={username}
     />
   );
 }

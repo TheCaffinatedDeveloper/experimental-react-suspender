@@ -14,6 +14,7 @@
   "rules": {
     "import/prefer-default-export": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "jsx-a11y/role-has-required-aria-props": "off"
+    "jsx-a11y/role-has-required-aria-props": "off",
+    "no-plusplus":"off"
   }
 }

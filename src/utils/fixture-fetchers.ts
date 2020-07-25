@@ -1,38 +1,45 @@
 import axios from 'axios';
+import { fixtureComments, fixturePosts } from 'src/data';
+import {
+  BASE_URL,
+  POSTS_ROUTE,
+  COMMENTS_ROUTE,
+  USERNAME_FIXTURE,
+} from 'src/constants';
 import { IPostData, ICommentData } from './fixture-types';
 
-const BASE_URL = 'https://my-json-server.typicode.com/typicode/demo';
-const POSTS = '/posts';
-const COMMENTS = '/comments';
+function fetchUsername() {
+  return USERNAME_FIXTURE;
+}
 
-export const USERNAME_FIXTURE = 'John Doe';
-
-export function fetchPosts() {
-  const posts: Promise<IPostData> = axios.get(`${BASE_URL}${POSTS}`);
+function fetchPosts() {
+  const posts: Promise<IPostData> = axios.get(`${BASE_URL}${POSTS_ROUTE}`);
   return posts;
 }
 
-export function fetchComments() {
-  const comments: Promise<ICommentData> = axios.get(`${BASE_URL}${COMMENTS}`);
+function fetchComments() {
+  const comments: Promise<ICommentData> = axios.get(`${BASE_URL}${COMMENTS_ROUTE}`);
   return comments;
 }
 
-export function fetchPostsSetTimeout() {
+function fetchPostsSetTimeout() {
   const posts: Promise<IPostData> = new Promise((resolve) => setTimeout(() => resolve({
-    data: [
-      {
-        "id": 1,
-        "title": "Post 1"
-      },
-      {
-        "id": 2,
-        "title": "Post 2"
-      },
-      {
-        "id": 3,
-        "title": "Post 3"
-      }
-    ],
-  }), 5000));
+    data: fixturePosts,
+  }), 3000));
   return posts;
 }
+
+function fetchCommentsSetTimeout() {
+  const comments: Promise<ICommentData> = new Promise((resolve) => setTimeout(() => resolve({
+    data: fixtureComments,
+  }), 4000));
+  return comments;
+}
+
+export {
+  fetchPosts,
+  fetchComments,
+  fetchCommentsSetTimeout,
+  fetchPostsSetTimeout,
+  fetchUsername,
+};

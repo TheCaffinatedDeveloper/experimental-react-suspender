@@ -1,4 +1,3 @@
-
 /**
  * Class responsible for keeping track of all components that have async props and
  * resolving them
@@ -7,9 +6,13 @@
  * @class AsyncTracker
  */
 export class AsyncTracker {
-  children: JSX.Element[]
-  asyncTracker: Object
-  asyncComponentNames: string[]
+  children: JSX.Element[];
+
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  asyncTracker: Record<string, Object>;
+
+  asyncComponentNames: string[];
+
   /**
    * Creates an instance of AsyncTracker.
    * @param {*} reactChildren - components inside suspender
@@ -44,7 +47,7 @@ export class AsyncTracker {
     if (componentName in this.asyncTracker) {
       const asyncProps = Object.keys(this.asyncTracker[componentName]);
       return !asyncProps.some(
-        (prop) => !this.asyncTracker[componentName][prop].resolved
+        (prop) => !this.asyncTracker[componentName][prop].resolved,
       );
     }
     return true;
@@ -75,8 +78,8 @@ export class AsyncTracker {
    */
   extractAsyncProps() {
     // traverse each component
-    this.children.forEach(({ props, type: { name }}, idx) => {
-      const propDict= {};
+    this.children.forEach(({ props, type: { name } }, idx) => {
+      const propDict = {};
       const propsAsEntries = Object.entries(props);
       // traverse the props of that component
       propsAsEntries.forEach(([propName, propValue]) => {
@@ -102,18 +105,18 @@ export class AsyncTracker {
    * @param {*} stateUpdater
    * @memberof AsyncTracker
    */
-  resolveAsnycProps(stateUpdater: React.Dispatch<React.SetStateAction<Object>>) {
+  resolveAsnycProps(stateUpdater: React.Dispatch<React.SetStateAction<unknown>>) {
     // For each component with async props
     this.asyncComponentNames.forEach((component) => {
       // traverse each async prop
       Object.keys(this.asyncTracker[component]).forEach((prop) => {
         // call .then() to queue in event loop
-        this.asyncTracker[component][prop].promise.then((res: Object) => {
+        this.asyncTracker[component][prop].promise.then((res: unknown) => {
           // If the prop has not been previously resolved
           if (!this.asyncTracker[component][prop].resolved) {
             // save resolved value
             this.asyncTracker[component][prop].resolved = res;
-            stateUpdater({...this.asyncTracker});
+            stateUpdater({ ...this.asyncTracker });
           }
         });
       });

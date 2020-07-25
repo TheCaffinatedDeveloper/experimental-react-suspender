@@ -1,20 +1,20 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { fetchComments } from 'src/utils/fixture-fetchers';
+import { fetchComments } from 'src/utils';
 import { Comments } from 'src/profile/comments/comments';
 import { ICommentData, IComment } from 'src/utils/fixture-types';
 
-const COMMENTS_HEADER: string = 'Comments';
-const COMMENTS_LIST_ID: string = 'comments-list';
+const COMMENTS_HEADER = 'Comments';
+const COMMENTS_LIST_ID = 'comments-list';
 
 let numComments: number;
-let textContent: string[] = [];
+const textContent: string[] = [];
 
 // Scan data needed by comments component
 beforeAll(async () => {
   const { data }: ICommentData = await fetchComments();
   numComments = data.length;
-  data.forEach((comment: IComment) => { textContent.push(comment.body)});
+  data.forEach((comment: IComment) => { textContent.push(comment.body); });
 });
 
 test('Renders the comments list', async () => {

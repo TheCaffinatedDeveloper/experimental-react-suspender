@@ -1,25 +1,35 @@
-export interface IComment {
-  id: string,
+interface IComment {
+  id: number,
   body: string,
+  postId: number,
 }
 
-export interface IPost {
+interface IPost {
   id: number,
   title: string,
 }
 
-export interface IPostData {
+interface IPostData {
   data: IPost[],
 }
 
-export interface IPosts {
+interface IPosts {
   posts: IPostData,
 }
 
-export interface ICommentData {
+interface ICommentData {
   data: IComment[],
 }
 
-export interface IComments {
+interface IComments {
   comments: ICommentData,
 }
+
+export {
+  IComment,
+  ICommentData,
+  IComments,
+  IPost,
+  IPostData,
+  IPosts,
+};

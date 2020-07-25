@@ -14,7 +14,7 @@ interface Profile {
   username: string,
 }
 
-const Loader = () => <div>Loading...</div>;
+const Loader = () => <div data-testid="fallback-loader">Loading...</div>;
 
 const Username = ({ username }: IUsername) => (
   <h1 data-testid="username" style={{ marginBottom: 10 }}>

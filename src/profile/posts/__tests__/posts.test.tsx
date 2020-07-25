@@ -1,20 +1,20 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { fetchPosts } from 'src/utils/fixture-fetchers';
+import { fetchPosts } from 'src/utils';
 import { Posts } from 'src/profile/posts/posts';
 import { IPostData, IPost } from 'src/utils/fixture-types';
 
-const POSTS_HEADER: string = 'Posts';
-const POSTS_LIST_ID: string = 'posts-list';
+const POSTS_HEADER = 'Posts';
+const POSTS_LIST_ID = 'posts-list';
 
 let numPosts: number;
-let textContent: string[] = [];
+const textContent: string[] = [];
 
 // Scan data needed by posts component
 beforeAll(async () => {
   const { data }: IPostData = await fetchPosts();
   numPosts = data.length;
-  data.forEach((comment: IPost) => { textContent.push(comment.title)});
+  data.forEach((comment: IPost) => { textContent.push(comment.title); });
 });
 
 test('Renders the list header', async () => {

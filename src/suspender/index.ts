@@ -1,2 +1,1 @@
-import { Suspender } from './suspender';
-export { Suspender };
+export { Suspender } from './suspender';
