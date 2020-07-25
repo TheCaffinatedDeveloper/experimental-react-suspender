@@ -4,6 +4,7 @@ module.exports = {
 
   moduleNameMapper: {
     '^src(.*)$': '<rootDir>/src/$1',
+    '^lib(.*)$': '<rootDir>/lib/$1',
   },
 
   verbose: true,
@@ -15,6 +16,7 @@ module.exports = {
   },
 
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  modulePathIgnorePatterns: ["<rootDir>/dist/"],
 
   // Runs special logic, such as cleaning up components
   // when using React Testing Library and adds special

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Suspender } from 'src/suspender';
+import { Suspender } from 'lib';
 import { ICommentData, IPostData } from 'src/utils/fixture-types';
 import { FallbackLoader } from 'src/loaders';
 import { DATA_TESTIDS } from 'src/constants';

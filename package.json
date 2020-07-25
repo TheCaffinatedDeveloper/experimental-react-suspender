@@ -17,8 +17,17 @@
     "url": "https://github.com/TheCaffinatedDeveloper/experimental-react-suspender/issues"
   },
   "homepage": "https://github.com/TheCaffinatedDeveloper/experimental-react-suspender#readme",
+  "keywords": [
+    "promise",
+    "async",
+    "react",
+    "suspense",
+    "concurrent mode"
+  ],
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
   "dependencies": {
-    "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -34,6 +43,7 @@
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
+    "axios": "^0.19.2",
     "babel-jest": "^26.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "eslint": "^7.5.0",

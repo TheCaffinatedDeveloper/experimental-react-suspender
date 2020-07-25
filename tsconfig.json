@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "src": ["./src"],
+      "lib": ["./lib"],
     },
     "outDir": "dist",
     "module": "esnext",
@@ -25,5 +26,5 @@
     "noUnusedParameters": true
   },
   "include": ["src", "rtl.setup.js"],
-  "exclude": ["node_modules", "dist", "rollup.config.js"]
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
-import { Suspender } from 'src/suspender/suspender';
+import { Suspender } from 'lib';
 import { Posts } from 'src/profile/posts/posts';
 import { Comments } from 'src/profile/comments/comments';
 import { fetchPostsSetTimeout, fetchCommentsSetTimeout } from 'src/utils';
