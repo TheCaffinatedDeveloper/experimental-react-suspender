@@ -6,3 +6,13 @@ export {
   POSTS_ROUTE_TIMEOUT,
   COMMENTS_ROUTE_TIMEOUT,
 } from './data-constants';
+
+export {
+  LOADING_TEXT,
+  DATA_TESTIDS,
+  POSTS_TEXT_CONTENT,
+  COMMENTS_HEADER,
+  COMMENTS_LIST_ID,
+  POSTS_HEADER,
+  POSTS_LIST_ID,
+} from './test-constants';

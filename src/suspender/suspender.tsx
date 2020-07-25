@@ -23,15 +23,18 @@ interface SuspenderProps {
  * the component with resolved props
  */
 export function Suspender(props: SuspenderProps) {
+  // eslint-disable-next-line react/destructuring-assignment
   const children: any[] = React.Children.toArray(props.children);
   // maintain the async tracker between reders
   const asyncTracker = useRef(new AsyncTracker(children)).current;
+  // Use to abort state updates if Suspender unmounts before completion
   const mounted = useRef(true);
 
   // use for rendering
   const [values, setValues] = useState(asyncTracker.tracker);
   useEffect(() => () => { mounted.current = false; }, []);
 
+  // controlled state update - checks to make sure Suspender is mounted
   const stateUpdater = (newState: any) => {
     if (mounted.current) {
       setValues(newState);

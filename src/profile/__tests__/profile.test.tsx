@@ -2,7 +2,7 @@
 import React from 'react';
 import { Profile } from 'src/profile';
 import { render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
-import { POSTS_ROUTE_TIMEOUT } from 'src/constants';
+import { POSTS_ROUTE_TIMEOUT, DATA_TESTIDS } from 'src/constants';
 import {
   fetchComments,
   fetchPostsSetTimeout,
@@ -30,19 +30,19 @@ test('Profile renders username, posts, and comments', async () => {
     />,
   );
   // Username has no async props so it shoudl render right away
-  expect(getByTestId('username')).toHaveTextContent(username);
+  expect(getByTestId(DATA_TESTIDS.username)).toHaveTextContent(username);
   // Comments and Posts both have async props, suspender should fallback twice
-  expect(getAllByTestId('fallback-loader')).toHaveLength(NUMBER_ASYNC_PROPS);
+  expect(getAllByTestId(DATA_TESTIDS.fallbackLoader)).toHaveLength(NUMBER_ASYNC_PROPS);
   // Comments should resolve first
-  await waitFor(() => getByTestId('comments'));
+  await waitFor(() => getByTestId(DATA_TESTIDS.comments));
   // Now there should only be one loader
-  expect(getAllByTestId('fallback-loader')).toHaveLength(1);
+  expect(getAllByTestId(DATA_TESTIDS.fallbackLoader)).toHaveLength(1);
   // wait for posts to resolve
-  await waitForElementToBeRemoved(getAllByTestId('fallback-loader'), {
+  await waitForElementToBeRemoved(getAllByTestId(DATA_TESTIDS.fallbackLoader), {
     timeout: POSTS_ROUTE_TIMEOUT,
   });
   // No more loaders
-  expect(queryByTestId('fallback-loader')).toBeNull();
+  expect(queryByTestId(DATA_TESTIDS.fallbackLoader)).toBeNull();
   // posts should be truthy now
-  expect(getByTestId('posts')).toBeTruthy();
+  expect(getByTestId(DATA_TESTIDS.posts)).toBeTruthy();
 });

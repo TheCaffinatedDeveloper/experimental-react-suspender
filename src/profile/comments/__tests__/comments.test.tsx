@@ -1,11 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { fetchComments } from 'src/utils';
+import {
+  COMMENTS_HEADER,
+  COMMENTS_LIST_ID,
+} from 'src/constants';
 import { Comments } from 'src/profile/comments/comments';
 import { ICommentData, IComment } from 'src/utils/fixture-types';
-
-const COMMENTS_HEADER = 'Comments';
-const COMMENTS_LIST_ID = 'comments-list';
 
 let numComments: number;
 const textContent: string[] = [];

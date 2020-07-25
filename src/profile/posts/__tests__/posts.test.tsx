@@ -1,11 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { fetchPosts } from 'src/utils';
+import {
+  POSTS_HEADER,
+  POSTS_LIST_ID,
+} from 'src/constants';
 import { Posts } from 'src/profile/posts/posts';
 import { IPostData, IPost } from 'src/utils/fixture-types';
-
-const POSTS_HEADER = 'Posts';
-const POSTS_LIST_ID = 'posts-list';
 
 let numPosts: number;
 const textContent: string[] = [];

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Suspender } from 'src/suspender';
 import { ICommentData, IPostData } from 'src/utils/fixture-types';
+import { FallbackLoader } from 'src/loaders';
+import { DATA_TESTIDS } from 'src/constants';
 import { Posts } from './posts/posts';
 import { Comments } from './comments/comments';
 
@@ -14,17 +16,15 @@ interface Profile {
   username: string,
 }
 
-const Loader = () => <div data-testid="fallback-loader">Loading...</div>;
-
 const Username = ({ username }: IUsername) => (
-  <h1 data-testid="username" style={{ marginBottom: 10 }}>
+  <h1 data-testid={DATA_TESTIDS.username} style={{ marginBottom: 10 }}>
     {username}
   </h1>
 );
 
 export function Profile({ posts, comments, username }: Profile) {
   return (
-    <Suspender fallback={<Loader />}>
+    <Suspender fallback={<FallbackLoader />}>
       <Username username={username} />
       <Posts posts={posts} />
       <Comments comments={comments} />
