@@ -3,6 +3,7 @@ src/
 package-lock.json
 .cache/
 tsconfig.json
+tsconfig.npm.json
 suspender-demo.gif
 jest.config.js
 index.html
