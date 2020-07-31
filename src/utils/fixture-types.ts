@@ -9,27 +9,27 @@ interface IPost {
   title: string,
 }
 
+interface IPosts {
+  posts: IPost[],
+}
+
 interface IPostData {
   data: IPost[],
 }
 
-interface IPosts {
-  posts: IPostData,
+interface IComments {
+  comments: IComment[],
 }
 
 interface ICommentData {
   data: IComment[],
 }
 
-interface IComments {
-  comments: ICommentData,
-}
-
 export {
   IComment,
-  ICommentData,
   IComments,
   IPost,
-  IPostData,
   IPosts,
+  IPostData,
+  ICommentData,
 };

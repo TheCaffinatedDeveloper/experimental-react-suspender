@@ -1,6 +1,6 @@
 import React from 'react';
 import { Suspender } from 'lib';
-import { ICommentData, IPostData } from 'src/utils/fixture-types';
+import { IComment, IPost } from 'src/utils/fixture-types';
 import { FallbackLoader } from 'src/loaders';
 import { DATA_TESTIDS } from 'src/constants';
 import { Posts } from './posts/posts';
@@ -11,8 +11,8 @@ interface IUsername {
   username: string,
 }
 interface Profile {
-  posts: IPostData,
-  comments: ICommentData,
+  posts: IPost[],
+  comments: IComment[],
   username: string,
 }
 
@@ -24,7 +24,7 @@ const Username = ({ username }: IUsername) => (
 
 export function Profile({ posts, comments, username }: Profile) {
   return (
-    <Suspender fallback={<FallbackLoader />}>
+    <Suspender fallback={<FallbackLoader />} axios>
       <Username username={username} />
       <Posts posts={posts} />
       <Comments comments={comments} />

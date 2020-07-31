@@ -8,9 +8,9 @@ export {
 
 export {
   IComment,
-  ICommentData,
   IComments,
   IPost,
-  IPostData,
   IPosts,
+  IPostData,
+  ICommentData,
 } from './fixture-types';

@@ -20,9 +20,9 @@ beforeAll(async () => {
 
 test('Renders the comments list', async () => {
   // fetch data
-  const comments: ICommentData = await fetchComments();
+  const { data }: ICommentData = await fetchComments();
   // mount component
-  const { getByRole, getByTestId } = render(<Comments comments={comments} />);
+  const { getByRole, getByTestId } = render(<Comments comments={data} />);
   // Comments header should be accurately present
   expect(getByRole('heading')).toHaveTextContent(COMMENTS_HEADER);
   // Grab list node

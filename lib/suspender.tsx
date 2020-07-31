@@ -8,7 +8,29 @@ import { AsyncTracker } from './async-tracker';
 
 interface SuspenderProps {
   children: JSX.Element[] | JSX.Element,
+  /**
+   * Fallback component that will be displayed while component still has unresolved
+   * async props
+   *
+   * @type {React.ReactElement}
+   * @memberof SuspenderProps
+   */
   fallback: React.ReactElement,
+  /**
+   * Optional param that if passed, will extract resolved values
+   * from "data" key when resolving promise
+   *
+   * @type {boolean}
+   * @memberof SuspenderProps
+   */
+  axios?: boolean,
+  extractKey?: string,
+}
+
+function checkPropsForExtractionType(axios: boolean | undefined, extractKey: string | undefined) {
+  if (extractKey) return extractKey;
+  if (axios) return 'data';
+  return undefined;
 }
 
 /**
@@ -23,10 +45,12 @@ interface SuspenderProps {
  * the component with resolved props
  */
 export function Suspender(props: SuspenderProps) {
+  const { axios, extractKey } = props;
   // eslint-disable-next-line react/destructuring-assignment
   const children: any[] = React.Children.toArray(props.children);
+  const extractType = checkPropsForExtractionType(axios, extractKey);
   // maintain the async tracker between reders
-  const asyncTracker = useRef(new AsyncTracker(children)).current;
+  const asyncTracker = useRef(new AsyncTracker(children, extractType)).current;
   // Use to abort state updates if Suspender unmounts before completion
   const mounted = useRef(true);
 
@@ -64,3 +88,8 @@ export function Suspender(props: SuspenderProps) {
     </>
   );
 }
+
+Suspender.defaultProps = {
+  axios: false,
+  extractKey: null,
+};

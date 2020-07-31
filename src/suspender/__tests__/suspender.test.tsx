@@ -32,7 +32,7 @@ beforeEach(() => {
  */
 test('Suspender renders fallback while resolving props', () => {
   const { container } = render(
-    <Suspender fallback={<FallbackLoader />}>
+    <Suspender fallback={<FallbackLoader />} axios>
       <Posts posts={posts} />
     </Suspender>,
   );
@@ -46,7 +46,7 @@ test('Suspender renders fallback while resolving props', () => {
  */
 test('Suspender resolves props and renders component', async () => {
   const { getByTestId } = render(
-    <Suspender fallback={<FallbackLoader />}>
+    <Suspender fallback={<FallbackLoader />} axios>
       <Posts posts={posts} />
     </Suspender>,
   );

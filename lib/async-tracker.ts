@@ -8,6 +8,8 @@
 export class AsyncTracker {
   children: JSX.Element[];
 
+  extractType?: string;
+
   // eslint-disable-next-line @typescript-eslint/ban-types
   asyncTracker: Record<string, Object>;
 
@@ -18,10 +20,11 @@ export class AsyncTracker {
    * @param {*} reactChildren - components inside suspender
    * @memberof AsyncTracker
    */
-  constructor(reactChildren: JSX.Element[]) {
+  constructor(reactChildren: JSX.Element[], extractType: string | undefined) {
     this.children = reactChildren;
     this.asyncTracker = {};
     this.asyncComponentNames = [];
+    this.extractType = extractType;
     this.extractAsyncProps();
   }
 
@@ -65,7 +68,8 @@ export class AsyncTracker {
     const asyncProps = Object.keys(this.asyncTracker[componentName]);
     const newProps = {};
     asyncProps.forEach((prop) => {
-      newProps[prop] = this.asyncTracker[componentName][prop].resolved;
+      const { resolved } = this.asyncTracker[componentName][prop];
+      newProps[prop] = this.extractType ? resolved[this.extractType] : resolved;
     });
     return newProps;
   }
