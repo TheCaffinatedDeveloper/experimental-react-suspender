@@ -5,3 +5,4 @@ package-lock.json
 tsconfig.json
 suspender-demo.gif
 jest.config.js
+index.html

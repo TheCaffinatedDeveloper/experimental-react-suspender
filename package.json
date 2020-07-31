@@ -2,11 +2,11 @@
   "name": "experimental-react-suspender",
   "version": "1.0.3",
   "description": "An experimental alternative approach to React Concurrent Mode Experimental Suspense component",
-  "main": "index.js",
+  "main": "dist/suspender.js",
   "scripts": {
     "test": "jest --watch",
     "hot": "NODE_ENV=development parcel ./src/index.html --no-autoinstall",
-    "prepare": "tsc && echo 'Finished building NPM package'"
+    "prepare": "tsc -p tsconfig.npm.json && echo 'Finished building NPM package'"
   },
   "repository": {
     "type": "git",
